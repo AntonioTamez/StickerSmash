@@ -9,7 +9,7 @@ const botonera = [
     { key: '2', text: 'Empleados', icon: 'people-sharp' },
     { key: '3', text: 'Tienda', icon: 'storefront-sharp' },
     { key: '4', text: 'Directores', icon: 'people-outline' },
-    { key: '5', text: 'Perfil', icon: 'person' },
+    { key: '5', text: 'Area clientes', icon: 'person' },
     { key: '6', text: 'Salir', icon: 'log-out' },
 ]
 
@@ -36,7 +36,7 @@ export default function EscritorioScreen({ navigation }) {
                 navigation.navigate('Directores')
                 break;
             case '5':
-                navigation.navigate('Profile')
+                navigation.navigate('Login')
                 break;
             case '6':
                 break;

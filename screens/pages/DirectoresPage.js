@@ -1,7 +1,8 @@
 import { Text, FlatList, TouchableOpacity, StyleSheet, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { COLORS, FONTS, SIZES } from '../../constants/theme';
 import { rutaAPI } from '../../constants/utils';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function DirectoresPage({ navigation }) {
 
@@ -20,12 +21,22 @@ export default function DirectoresPage({ navigation }) {
         }
     };
 
-    useEffect(() => {
-        leerServicio();
-    }, []);
+    useFocusEffect(
+        useCallback(() => {
+            leerServicio();
+        })
+    );
+
+    const seleccionarDirector = (item) => {
+        navigation.navigate('DirectoresEdit',{
+            iddirector: item.iddirector,
+            nombres: item.nombres,
+            peliculas: item.peliculas,
+        })
+    }
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={() => seleccionarDirector(item)}>
             <Text style={styles.itemTitulo}>{item.iddirector}</Text>
             <View>
                 <Text style={styles.itemSubtitulo}>{item.nombres}</Text>
@@ -54,16 +65,16 @@ export default function DirectoresPage({ navigation }) {
 }
 const styles = StyleSheet.create({
     fab:{
-         position: 'absolute',
-         backgroundColor: COLORS.color4,
-         width: 60,
-         height: 60,
-         borderRadius: 30,
-         alignItems: 'center',
-         justifyContent: 'center',
-         right: 30,
-         bottom: 30,
-         elevation: 8,
+        position: 'absolute',
+        backgroundColor: COLORS.color4,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 30,
+        bottom: 30,
+        elevation: 8,
     },
     fabIcon:{
         fontSize: 24,
@@ -79,7 +90,9 @@ const styles = StyleSheet.create({
     },
     itemTitulo: {
         ...FONTS.h3,
-        color: COLORS.color3
+        color: COLORS.color3,
+        padding: SIZES.base,
+        paddingRight: SIZES.large
     },
     itemSubtitulo: {
         fontSize: 20,

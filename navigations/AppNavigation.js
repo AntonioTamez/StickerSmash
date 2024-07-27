@@ -13,19 +13,35 @@ import ProductosPage from '../screens/pages/ProductosPage';
 import ProductoDetallePage from '../screens/pages/ProductoDetallePage';
 import DirectoresPage from '../screens/pages/DirectoresPage';
 import DirectoresInsertPage from '../screens/pages/DirectoresInsertPage';
+import { COLORS } from '../constants/theme';
+import DirectoresEditPage from '../screens/pages/DirectoresEditPage';
+import LoginPage from '../screens/pages/LoginPage';
+import MapaScreen from '../screens/MapaScreen';
+import EnviosScreen from '../screens/EnviosScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerTransparent:true,
+                    headerTitle: '',
+                    headerTintColor: COLORS.colorBlanco
+                }}
+                >
                 <Stack.Screen
                     name="Home"
                     component={HomeScreen}
                     options={{ title: 'Bienvenida' }} />
                 <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Perfil del usuario' }} />
-                <Stack.Screen name="Start" component={StartScreen} options={{ title: 'Empezar' }} />
+                <Stack.Screen name="Start" component={StartScreen} 
+                    options={{ title: 'Empezar',
+                        headerStyle: {
+                            backgroundColor: 'rgba(0,0,0,0.7)'
+                        },headerTitle: "Empezando..."
+                    }} />
                 <Stack.Screen name="Terminos" component={TerminosScreen} options={{ title: 'Términos y condiciones' }} />
                 <Stack.Screen name="Escritorio" component={EscritorioScreen} options={{ title: 'Escritorio' }} />
                 <Stack.Screen name="Proveedores" component={ProveedoresPage} options={{ title: 'Proveedores' }} />
@@ -35,6 +51,10 @@ export default function AppNavigation() {
                 <Stack.Screen name="ProductoDetalle" component={ProductoDetallePage} options={{ title: 'Producto Detalle' }} />
                 <Stack.Screen name="Directores" component={DirectoresPage} options={{ title: 'Directores' }} />
                 <Stack.Screen name="DirectoresInsert" component={DirectoresInsertPage} options={{ title: 'Directores' }} />
+                <Stack.Screen name="DirectoresEdit" component={DirectoresEditPage} options={{ title: 'Directores' }} />
+                <Stack.Screen name="Login" component={LoginPage} options={{ title: 'Iniciar sesión' }} />
+                <Stack.Screen name="Mapa" component={MapaScreen} options={{ title: 'Mapa' }} />
+                <Stack.Screen name="Envios" component={EnviosScreen} options={{ title: 'Envios' }} />
 
             </Stack.Navigator>
         </NavigationContainer>

@@ -21,6 +21,8 @@ export default function StartScreen({ navigation }) {
                 <Button title='Escritorio'
                     onPress={() => navigation.navigate('Escritorio')}/>
             </View>
+            <Button title='Mapa'
+                    onPress={() => navigation.navigate('Envios')}/>
         </View>
     )
 }
